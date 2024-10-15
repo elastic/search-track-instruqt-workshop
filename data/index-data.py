@@ -15,6 +15,9 @@ parser.add_argument(
     "--index_name", dest="index_name", required=False, default="search-movies"
 )
 parser.add_argument(
+    "--pipeline", dest="pipeline", required=False, default="vector_embedding_pipeline"
+)
+parser.add_argument(
     "--gzip_file", dest="gzip_file", required=False, default="movies-sample.json.gz"
 )
 
@@ -29,6 +32,7 @@ def data_generator(file_json, index):
         }
         yield {
             "_index": index,
+            "pipeline": pipeline,
             "_source": doc,
         }
 
@@ -52,7 +56,7 @@ success_count = 0
 
 for ok, info in helpers.streaming_bulk(
     client=es,
-    actions=data_generator(file_json, args.index_name),
+    actions=data_generator(file_json, args.index_name, args.pipeline),
     raise_on_error=False,
 ):
     if ok:
