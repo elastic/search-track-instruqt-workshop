@@ -24,7 +24,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def data_generator(file_json, index):
+def data_generator(file_json, index, pipeline):
     for doc in file_json:
         filtered_doc = {
             "overview": doc.get("overview"),
