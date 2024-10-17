@@ -21,6 +21,7 @@ ELSER_MODEL = os.getenv("ELSER_MODEL", ".elser_model_2_linux-x86_64")
 if ELASTICSEARCH_URL:
     elasticsearch_client = Elasticsearch(
         hosts=[ELASTICSEARCH_URL],
+        basic_auth=("elastic", "changeme")
     )
 elif ELASTIC_CLOUD_ID:
     elasticsearch_client = Elasticsearch(
