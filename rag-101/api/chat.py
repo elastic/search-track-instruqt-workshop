@@ -12,7 +12,7 @@ INDEX = os.getenv("ES_INDEX", "workplace-app-docs")
 INDEX_CHAT_HISTORY = os.getenv(
     "ES_INDEX_CHAT_HISTORY", "workplace-app-docs-chat-history"
 )
-ELSER_MODEL = os.getenv("ELSER_MODEL", ".elser_model_2")
+ELSER_MODEL = os.getenv("ELSER_MODEL", ".elser_model_2_linux-x86_64")
 SESSION_ID_TAG = "[SESSION_ID]"
 SOURCE_TAG = "[SOURCE]"
 DONE_TAG = "[DONE]"
