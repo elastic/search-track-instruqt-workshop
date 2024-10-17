@@ -26,7 +26,7 @@ boto3==1.35.24
     # via
     #   -r requirements.in
     #   cohere
-botocore==1.35.24
+botocore
     # via
     #   boto3
     #   s3transfer
@@ -174,7 +174,6 @@ langchain==0.3.0
     #   langchain-community
 langchain-community==0.3.0
     # via -r requirements.in
-
 langchain-core==0.3.5
     # via
     #   langchain
@@ -286,7 +285,7 @@ pyyaml==6.0.2
     #   langchain-core
 regex==2024.9.11
     # via tiktoken
-requests==2.32.3
+requests
     # via
     #   cohere
     #   google-api-core
@@ -331,7 +330,7 @@ tqdm==4.66.5
     # via
     #   huggingface-hub
     #   openai
-types-requests==2.32.0.20240914
+types-requests
     # via cohere
 typing-extensions==4.12.2
     # via
@@ -345,7 +344,7 @@ typing-extensions==4.12.2
     #   typing-inspect
 typing-inspect==0.9.0
     # via dataclasses-json
-urllib3==2.2.3
+urllib3
     # via
     #   botocore
     #   elastic-transport
@@ -360,6 +359,3 @@ yarl==1.11.1
 zipp==3.20.2
     # via importlib-metadata
 
-# The following packages are considered to be unsafe in a requirements file:
-# pip
-# setuptools
