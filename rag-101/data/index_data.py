@@ -16,7 +16,7 @@ FILE = os.getenv("FILE", f"{os.path.dirname(__file__)}/data.json")
 ELASTIC_CLOUD_ID = os.getenv("ELASTIC_CLOUD_ID")
 ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL")
 ELASTIC_API_KEY = os.getenv("ELASTIC_API_KEY")
-ELSER_MODEL = os.getenv("ELSER_MODEL", ".elser_model_2")
+ELSER_MODEL = os.getenv("ELSER_MODEL", ".elser_model_2_linux-x86_64")
 
 if ELASTICSEARCH_URL:
     elasticsearch_client = Elasticsearch(
