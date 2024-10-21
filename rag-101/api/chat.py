@@ -1,5 +1,5 @@
 from langchain_elasticsearch import ElasticsearchStore, SparseVectorStrategy
-from llm_integrations import get_llm
+import llm_integrations
 from elasticsearch_client import (
     elasticsearch_client,
     get_elasticsearch_chat_message_history,
@@ -7,6 +7,7 @@ from elasticsearch_client import (
 from flask import render_template, stream_with_context, current_app
 import json
 import os
+
 
 INDEX = os.getenv("ES_INDEX", "workplace-app-docs")
 INDEX_CHAT_HISTORY = os.getenv(
@@ -40,7 +41,7 @@ def ask_question(question, session_id):
             question=question,
             chat_history=chat_history.messages,
         )
-        condensed_question = get_llm().invoke(condense_question_prompt).content
+        condensed_question = llm_integrations.es_chat_completion(condense_question_prompt,"openai_chat_completions")
     else:
         condensed_question = question
 
@@ -63,13 +64,17 @@ def ask_question(question, session_id):
     )
 
     answer = ""
-    for chunk in get_llm().stream(qa_prompt):
-        content = chunk.content.replace(
-            "\n", " "
-        )  # the stream can get messed up with newlines
-        yield f"data: {content}\n\n"
-        answer += chunk.content
+    
+    answer_stream = llm_integrations.es_chat_completion(qa_prompt,
+                                                    "openai_chat_completions")
 
+    for chunk in answer_stream:
+        # Send each chunk as a part of the response, making sure to format it correctly for SSE
+        content = chunk.replace("\n", " ")  # Optional: Replace newlines for clean streaming
+        yield f"data: {content}\n\n"  # SSE format: "data: message\n\n"
+        answer += content
+
+    # Indicate that the stream is done
     yield f"data: {DONE_TAG}\n\n"
     current_app.logger.debug("Answer: %s", answer)
 
