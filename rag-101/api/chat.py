@@ -1,5 +1,5 @@
 from langchain_elasticsearch import ElasticsearchStore, SparseVectorStrategy
-import llm_integrations
+import inference_service
 from elasticsearch_client import (
     elasticsearch_client,
     get_elasticsearch_chat_message_history,
@@ -41,7 +41,7 @@ def ask_question(question, session_id):
             question=question,
             chat_history=chat_history.messages,
         )
-        condensed_question = llm_integrations.es_chat_completion(condense_question_prompt,"openai_chat_completions")
+        condensed_question = inference_service.es_chat_completion(condense_question_prompt,"openai_chat_completions")
     else:
         condensed_question = question
 
@@ -65,7 +65,7 @@ def ask_question(question, session_id):
 
     answer = ""
     
-    answer_stream = llm_integrations.es_chat_completion(qa_prompt,
+    answer_stream = inference_service.es_chat_completion(qa_prompt,
                                                     "openai_chat_completions")
 
     for chunk in answer_stream:
