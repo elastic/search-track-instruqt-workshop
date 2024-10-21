@@ -19,10 +19,6 @@ es_client = Elasticsearch(
     timeout=90
 )
 
-es_client = Elasticsearch(
-        cloud_id=ELASTIC_CLOUD_ID, api_key=ELASTIC_API_KEY
-    )
-
 
 def es_chat_completion(prompt, inference_id):
 
