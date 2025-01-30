@@ -46,7 +46,7 @@ def index_pdf_using_langchain(pdf_url, index_name):
 def main():
     pdf_url = "https://arxiv.org/pdf/2103.15348.pdf"
     # Then, using langchain for splitting and indexing
-    index_pdf_using_langchain(pdf_url, "my_pdf_index_langchain")
+    index_pdf_using_langchain(pdf_url, "elser_index")
 
 if __name__ == "__main__":
     main()
