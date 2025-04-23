@@ -2,7 +2,6 @@ flask
 flask-cors
 langchain
 langchain-elasticsearch
-elasticsearch
-elasticsearch
+elasticsearch==8.16.0
 python-dotenv
 tiktoken
